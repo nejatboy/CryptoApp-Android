@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RemoteDataSource {
 
-    private val baseUrl = "https://api.themoviedb.org/"
+    private val baseUrl = "https://api.coingecko.com"
 
 
     fun <T> buildApi(api: Class<T>) : T {
@@ -15,5 +15,4 @@ class RemoteDataSource {
             .build()
             .create(api)
     }
-
 }

@@ -6,26 +6,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.loodos.cryptoapp.base.BaseActivity
 import com.loodos.cryptoapp.base.BaseViewModel
-import com.loodos.cryptoapp.repository.BaseRepository
-import com.loodos.cryptoapp.services.RemoteDataSource
-import com.loodos.cryptoapp.util.ViewModelFactory
 
-abstract class BasePrimaryFragmentHasViewModel<A: BaseActivity<*>, VB: ViewBinding, VM: BaseViewModel, R: BaseRepository>: BaseFragment<A, VB>() {
 
-    protected val remoteDataSource = RemoteDataSource()
+abstract class BasePrimaryFragmentHasViewModel<A: BaseActivity<*>, VB: ViewBinding, VM: BaseViewModel>: BasePrimaryFragment<A, VB>() {
+
     protected lateinit var viewModel: VM
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factory = ViewModelFactory(getFragmentRepository())
-        viewModel = ViewModelProvider(this, factory).get(getViewModel())
+        viewModel = ViewModelProvider(this).get(prepareViewModel())
     }
 
 
-    abstract fun getViewModel() : Class<VM>
-
-
-    abstract fun getFragmentRepository() : R
+    abstract fun prepareViewModel() : Class<VM>
 }

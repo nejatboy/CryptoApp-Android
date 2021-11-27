@@ -1,4 +1,4 @@
-package com.newgamesoftware.moviesdemo_android_mvvm.service
+package com.loodos.cryptoapp.services
 
 
 

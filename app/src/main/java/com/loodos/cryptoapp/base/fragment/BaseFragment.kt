@@ -16,12 +16,12 @@ abstract class BaseFragment<A: BaseActivity<*>, VB: ViewBinding>: Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = getFragmentBinding(inflater, container)
+        binding = prepareFragmentBinding(inflater, container)
         return binding.root
     }
 
 
-    abstract fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?) : VB
+    abstract fun prepareFragmentBinding(inflater: LayoutInflater, container: ViewGroup?) : VB
 
 
     @Suppress("UNCHECKED_CAST")
