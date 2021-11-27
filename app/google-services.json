@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "917862081429",
+    "firebase_url": "https://movies-app-4ae6c-default-rtdb.firebaseio.com",
+    "project_id": "movies-app-4ae6c",
+    "storage_bucket": "movies-app-4ae6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917862081429:android:486cf78694b6d378ea8c9c",
+        "android_client_info": {
+          "package_name": "com.loodos.cryptoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917862081429-dqn7i536unrq2mc6ut2kujnv7uumah72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIM-jr1lazyG3XlLGpgXONfSUkEasKop0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917862081429-dqn7i536unrq2mc6ut2kujnv7uumah72.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "917862081429-u5aihceqlim58tibs9t480sggstmtdqr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.MoviesApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
