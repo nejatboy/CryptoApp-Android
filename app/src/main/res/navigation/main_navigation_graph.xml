@@ -2,10 +2,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_navigation_graph"
-    app:startDestination="@id/cryptoFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/cryptoFragment"
         android:name="com.loodos.cryptoapp.ui.crypto.CryptoFragment"
         android:label="CryptoFragment" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.loodos.cryptoapp.ui.splash.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_cryptoFragment"
+            app:destination="@id/cryptoFragment" />
+    </fragment>
 </navigation>

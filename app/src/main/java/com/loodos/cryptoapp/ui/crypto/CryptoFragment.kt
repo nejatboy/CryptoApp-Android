@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.loodos.cryptoapp.base.fragment.BasePrimaryFragment
 import com.loodos.cryptoapp.base.fragment.BasePrimaryFragmentHasViewModel
 import com.loodos.cryptoapp.databinding.FragmentCryptoBinding
 import com.loodos.cryptoapp.ui.MainActivity
@@ -25,6 +24,6 @@ class CryptoFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentCryp
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getPing()
+
     }
 }
