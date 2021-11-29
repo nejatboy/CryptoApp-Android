@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.loodos.cryptoapp.base.fragment.BasePrimaryFragmentHasViewModel
 import com.loodos.cryptoapp.databinding.FragmentCryptoBinding
+import com.loodos.cryptoapp.models.Coin
 import com.loodos.cryptoapp.ui.MainActivity
 
 
@@ -24,6 +25,15 @@ class CryptoFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentCryp
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.coins.observe(viewLifecycleOwner, ::observeSearchedCoins)
 
+        binding.button.setOnClickListener {
+            viewModel.findCoinsInRoomDatabase(search = "btc")
+        }
+    }
+
+
+    private fun observeSearchedCoins(coins: List<Coin>) {
+        println()
     }
 }

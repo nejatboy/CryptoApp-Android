@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.loodos.cryptoapp.base.fragment.BasePrimaryFragmentHasViewModel
 import com.loodos.cryptoapp.databinding.FragmentSplashBinding
+import com.loodos.cryptoapp.models.Coin
 import com.loodos.cryptoapp.ui.MainActivity
 
 
@@ -15,6 +16,7 @@ class SplashFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentSpla
         return FragmentSplashBinding.inflate(inflater, container, false)
     }
 
+
     override fun prepareViewModel(): Class<SplashViewModel> {
         return SplashViewModel::class.java
     }
@@ -23,8 +25,19 @@ class SplashFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentSpla
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //viewModel.coins.observe(viewLifecycleOwner, ::coinsFetched)
+
+        //viewModel.requestFetchCoins()
+
         val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
         navController().navigate(action)
     }
 
+
+    private fun coinsFetched(coins: ArrayList<Coin>) {
+        viewModel.storeInRoomDatabase(coins)
+
+        val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
+        navController().navigate(action)
+    }
 }

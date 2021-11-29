@@ -3,6 +3,7 @@ package com.loodos.cryptoapp.services.firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
+
 class AuthService {
 
     private val auth = FirebaseAuth.getInstance()
