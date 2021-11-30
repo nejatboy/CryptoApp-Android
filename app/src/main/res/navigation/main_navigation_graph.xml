@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/cryptoFragment"
         android:name="com.loodos.cryptoapp.ui.crypto.CryptoFragment"
-        android:label="CryptoFragment" />
+        android:label="CryptoFragment" >
+        <action
+            android:id="@+id/action_cryptoFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.loodos.cryptoapp.ui.splash.SplashFragment"
@@ -16,4 +20,19 @@
             android:id="@+id/action_splashFragment_to_cryptoFragment"
             app:destination="@id/cryptoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.loodos.cryptoapp.ui.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="selectedCoin"
+            app:argType="com.loodos.cryptoapp.models.Coin" />
+        <action
+            android:id="@+id/action_detailFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.loodos.cryptoapp.ui.login.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>

@@ -25,15 +25,30 @@ class CryptoFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentCryp
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.coins.observe(viewLifecycleOwner, ::observeSearchedCoins)
+        binding.searchBar.queryListener = ::searched
+        binding.recyclerView.adapter().itemClickListener = ::itemCoinClicked
 
-        binding.button.setOnClickListener {
-            viewModel.findCoinsInRoomDatabase(search = "btc")
+        viewModel.coins.observe(viewLifecycleOwner, ::observeSearchedCoins)
+    }
+
+
+    private fun searched(query: String) {
+        if (query.isEmpty()) {
+            binding.recyclerView.adapter().setCoins(newCoins = arrayListOf())
+            return
         }
+
+        viewModel.findCoinsInRoomDatabase(search = query)
     }
 
 
     private fun observeSearchedCoins(coins: List<Coin>) {
-        println()
+        binding.recyclerView.adapter().setCoins(coins)
+    }
+
+
+    private fun itemCoinClicked(coin: Coin) {
+        val action = CryptoFragmentDirections.actionCryptoFragmentToDetailFragment(coin)
+        navController().navigate(action)
     }
 }

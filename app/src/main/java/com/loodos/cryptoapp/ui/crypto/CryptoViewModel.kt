@@ -18,7 +18,5 @@ class CryptoViewModel(application: Application) : BaseViewModel(application) {
 
     fun findCoinsInRoomDatabase(search: String) = viewModelScope.launch {
         coins.postValue(dao.findCoin(search))
-
-        println("asd")
     }
 }

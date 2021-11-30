@@ -30,7 +30,5 @@ abstract class BaseFragment<A: BaseActivity<*>, VB: ViewBinding>: Fragment() {
     }
 
 
-    fun navController(): NavController {
-        return (parentFragment as NavHost).navController
-    }
+    fun showMessage(message: String) = activity().showMessage(message)
 }

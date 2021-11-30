@@ -15,10 +15,10 @@ class AuthService {
     }
 
 
-    fun signIn(email: String, password: String, completion: () -> Unit) {
+    private fun signIn(email: String, password: String, completion: (FirebaseUser) -> Unit) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
-                completion.invoke()
+                completion.invoke(it.user!!)
             }
 
             .addOnFailureListener {
@@ -28,14 +28,20 @@ class AuthService {
     }
 
 
-    fun signUp(email: String, password: String, completion: () -> Unit) {
+    fun login(email: String, password: String, completion: (FirebaseUser) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
-                completion.invoke()
+                completion.invoke(it.user!!)
             }
 
             .addOnFailureListener {
                 val errorMessage = it.localizedMessage ?: "An unexpected error has occurred."
+
+                if (errorMessage == "The email address is already in use by another account.") {
+                    signIn(email, password, completion)
+                    return@addOnFailureListener
+                }
+
                 messageListener?.invoke(errorMessage)
             }
     }
