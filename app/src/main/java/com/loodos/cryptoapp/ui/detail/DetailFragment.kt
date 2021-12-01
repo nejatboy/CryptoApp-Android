@@ -24,16 +24,21 @@ class DetailFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentDeta
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        activity().hideBottomNavigationView()
+
         bindCoin()
 
         binding.buttonAddFavourite.setOnClickListener {
-            val firebaseUser = viewModel.getFirebaseUser() ?: run {
+            /*val firebaseUser = viewModel.getFirebaseUser() ?: run {
                 val action = DetailFragmentDirections.actionDetailFragmentToLoginFragment()
                 navController().navigate(action)
                 return@setOnClickListener
             }
 
             val action = DetailFragmentDirections.actionDetailFragmentToLoginFragment()
+            navController().navigate(action)*/
+
+            val action = DetailFragmentDirections.actionDetailFragmentToProfileFragment()
             navController().navigate(action)
         }
     }
@@ -41,9 +46,9 @@ class DetailFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentDeta
 
     private fun bindCoin() {
         val arguments = arguments ?: return
-        val coin = DetailFragmentArgs.fromBundle(arguments).selectedCoin
+        val coinId = DetailFragmentArgs.fromBundle(arguments).containerId
 
-        println("asd")
+        viewModel.requestFetchCoinDetails(coinId = coinId)
 
         /*binding.imageView.loadUrl(movie.getImageUrl(isPosterPath = false))
         binding.layoutImdb.textViewPoint.text = "${movie.voteAverage}/10"
@@ -52,4 +57,9 @@ class DetailFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentDeta
         binding.textViewDescription.text = movie.overview*/
     }
 
+
+    override fun onDestroyView() {
+        activity().showBottomNavigationView()
+        super.onDestroyView()
+    }
 }

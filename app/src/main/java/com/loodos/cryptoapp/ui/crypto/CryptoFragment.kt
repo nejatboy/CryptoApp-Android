@@ -47,8 +47,8 @@ class CryptoFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentCryp
     }
 
 
-    private fun itemCoinClicked(coin: Coin) {
-        val action = CryptoFragmentDirections.actionCryptoFragmentToDetailFragment(coin)
+    private fun itemCoinClicked(coinId: String) {
+        val action = CryptoFragmentDirections.actionCryptoFragmentToDetailFragment(coinId)
         navController().navigate(action)
     }
 }

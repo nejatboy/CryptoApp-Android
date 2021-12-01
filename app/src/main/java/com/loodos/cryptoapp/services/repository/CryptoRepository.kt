@@ -1,6 +1,7 @@
 package com.loodos.cryptoapp.services.repository
 
 import com.loodos.cryptoapp.models.Coin
+import com.loodos.cryptoapp.models.CoinDetail
 import com.loodos.cryptoapp.services.Resource
 import com.loodos.cryptoapp.services.api.CryptoApi
 
@@ -11,5 +12,10 @@ class CryptoRepository: BaseRepository() {
 
     suspend fun fetchCoins() : Resource<ArrayList<Coin>> = safeApiCall {
         api.fetchCoins()
+    }
+
+
+    suspend fun fetchCoinDetails(coinId: String) : Resource<CoinDetail> = safeApiCall {
+        api.fetchCoinDetails(coinId)
     }
 }

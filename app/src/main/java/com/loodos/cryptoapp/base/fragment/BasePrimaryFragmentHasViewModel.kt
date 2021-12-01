@@ -13,7 +13,6 @@ abstract class BasePrimaryFragmentHasViewModel<A: BaseActivity<*>, VB: ViewBindi
     protected lateinit var viewModel: VM
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

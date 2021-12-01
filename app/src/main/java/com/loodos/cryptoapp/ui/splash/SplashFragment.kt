@@ -29,15 +29,29 @@ class SplashFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentSpla
 
         //viewModel.requestFetchCoins()
 
-        val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
-        navController().navigate(action)
+        //val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
+        //navController().navigate(action)
+
+        activity().hideBottomNavigationView()
+
+
+        view.postDelayed({
+            val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
+            navController().navigate(action)
+        }, 1000)
     }
 
 
     private fun coinsFetched(coins: ArrayList<Coin>) {
         viewModel.storeInRoomDatabase(coins)
 
-        val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
-        navController().navigate(action)
+        //val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
+        //navController().navigate(action)
+    }
+
+
+    override fun onDestroyView() {
+        activity().showBottomNavigationView()
+        super.onDestroyView()
     }
 }
