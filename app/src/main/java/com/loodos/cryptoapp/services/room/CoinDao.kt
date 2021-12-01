@@ -24,7 +24,7 @@ interface CoinDao {
     /*@Query("SELECT * FROM coin WHERE uuid = :id")
     suspend fun fetchCoin(id: String) : Coin
 
-
-    @Query("SELECT * FROM coin")
-    suspend fun clear()*/
+*/
+    @Query("DELETE FROM coin")
+    suspend fun clear()
 }

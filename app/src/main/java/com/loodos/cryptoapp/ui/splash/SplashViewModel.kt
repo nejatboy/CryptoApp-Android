@@ -34,6 +34,12 @@ class SplashViewModel(application: Application) : BaseViewModel(application) {
     }*/
 
 
+    fun clearRoomDatabase() = viewModelScope.launch {
+        val dao = CoinDatabase(getApplication()).coinDao()
+        dao.clear()
+    }
+
+
     fun requestFetchCoins() = viewModelScope.launch {
         val result = repository.fetchCoins()
 
@@ -49,10 +55,6 @@ class SplashViewModel(application: Application) : BaseViewModel(application) {
 
     fun storeInRoomDatabase(coins: ArrayList<Coin>) = viewModelScope.launch(Dispatchers.IO) {
         val dao = CoinDatabase(getApplication()).coinDao()
-        //dao.insertAll(*coins.toTypedArray())
-
-        val sss = dao.findCoin("siam")
-
-        println("asd")
+        dao.insertAll(*coins.toTypedArray())
     }
 }

@@ -10,8 +10,6 @@ class CryptoAdapter: BaseRecyclerViewAdapter<CellCryptoBinding>(R.layout.cell_cr
 
     private var coins: List<Coin> = arrayListOf()
 
-    var itemClickListener: ((coinId: String) -> Unit)? = null
-
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val coin = coins[position]

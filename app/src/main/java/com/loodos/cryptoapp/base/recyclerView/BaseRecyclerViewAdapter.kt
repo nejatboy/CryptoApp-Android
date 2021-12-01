@@ -11,6 +11,8 @@ abstract class BaseRecyclerViewAdapter<VDB: ViewDataBinding>(private val layoutI
 
     inner class Holder(cell: VDB) : BaseRecyclerViewHolder<VDB>(cell)
 
+    var itemClickListener: ((coinId: String) -> Unit)? = null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val inflater = LayoutInflater.from(parent.context)

@@ -33,4 +33,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun showBottomNavigationView() {
         binding.bottomNavigationView.visibility = View.VISIBLE
     }
+
+
+    override fun showProgress() {
+        binding.progressView.root.visibility = View.VISIBLE
+    }
+
+
+    override fun hideProgress() {
+        binding.progressView.root.visibility = View.GONE
+    }
 }

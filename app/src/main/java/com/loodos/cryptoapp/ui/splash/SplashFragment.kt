@@ -1,5 +1,6 @@
 package com.loodos.cryptoapp.ui.splash
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,28 +26,23 @@ class SplashFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentSpla
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //viewModel.coins.observe(viewLifecycleOwner, ::coinsFetched)
-
-        //viewModel.requestFetchCoins()
-
-        //val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
-        //navController().navigate(action)
+        showProgress()
 
         activity().hideBottomNavigationView()
 
-
-        view.postDelayed({
-            val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
-            navController().navigate(action)
-        }, 1000)
+        viewModel.clearRoomDatabase()
+        viewModel.coins.observe(viewLifecycleOwner, ::coinsFetched)
+        viewModel.requestFetchCoins()
     }
 
 
     private fun coinsFetched(coins: ArrayList<Coin>) {
         viewModel.storeInRoomDatabase(coins)
 
-        //val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
-        //navController().navigate(action)
+        val action = SplashFragmentDirections.actionSplashFragmentToCryptoFragment()
+        navController().navigate(action)
+
+        hideProgress()
     }
 
 

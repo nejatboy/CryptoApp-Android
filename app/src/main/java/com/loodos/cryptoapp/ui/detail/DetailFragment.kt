@@ -49,12 +49,6 @@ class DetailFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentDeta
         val coinId = DetailFragmentArgs.fromBundle(arguments).containerId
 
         viewModel.requestFetchCoinDetails(coinId = coinId)
-
-        /*binding.imageView.loadUrl(movie.getImageUrl(isPosterPath = false))
-        binding.layoutImdb.textViewPoint.text = "${movie.voteAverage}/10"
-        binding.layoutImdb.textViewDate.text = movie.releaseDate
-        binding.textViewTitle.text = movie.getTitle
-        binding.textViewDescription.text = movie.overview*/
     }
 
 
