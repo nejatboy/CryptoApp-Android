@@ -4,10 +4,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 
-class AuthService {
+class AuthService: BaseFirebaseService() {
 
     private val auth = FirebaseAuth.getInstance()
-    var messageListener: ((message: String) -> Unit)? = null
 
 
     fun getCurrentUserIfExist() : FirebaseUser? {

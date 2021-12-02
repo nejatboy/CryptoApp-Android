@@ -16,7 +16,7 @@ class CryptoAdapter: BaseRecyclerViewAdapter<CellCryptoBinding>(R.layout.cell_cr
         holder.binding().coin = coin
 
         holder.itemView.setOnClickListener {
-            itemClickListener?.invoke(coin.id)
+            itemClickListener?.invoke(coin)
         }
     }
 

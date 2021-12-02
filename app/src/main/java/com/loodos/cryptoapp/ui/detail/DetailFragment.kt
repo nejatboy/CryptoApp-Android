@@ -1,11 +1,15 @@
 package com.loodos.cryptoapp.ui.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.loodos.cryptoapp.base.fragment.BasePrimaryFragmentHasViewModel
 import com.loodos.cryptoapp.databinding.FragmentDetailBinding
+import com.loodos.cryptoapp.models.Coin
+import com.loodos.cryptoapp.models.CoinDetail
 import com.loodos.cryptoapp.ui.MainActivity
 
 
@@ -26,29 +30,52 @@ class DetailFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentDeta
 
         activity().hideBottomNavigationView()
 
-        bindCoin()
+        binding.buttonAddFavourite.setOnClickListener(::buttonAddFavouritesClicked)
 
-        binding.buttonAddFavourite.setOnClickListener {
-            /*val firebaseUser = viewModel.getFirebaseUser() ?: run {
-                val action = DetailFragmentDirections.actionDetailFragmentToLoginFragment()
-                navController().navigate(action)
-                return@setOnClickListener
-            }
+        getCoinFromBundle()?.let {  coin->
+            showProgress()
+            viewModel.requestFetchCoinDetails(coinId = coin.id)
+        }
 
-            val action = DetailFragmentDirections.actionDetailFragmentToLoginFragment()
-            navController().navigate(action)*/
+        viewModel.coinDetail.observe(viewLifecycleOwner, ::observeCoinDetail)
+        viewModel.coinInFavourites.observe(viewLifecycleOwner, ::observeCoinInFavourites)
+    }
 
+
+    private fun getCoinFromBundle() : Coin? {
+        val arguments = arguments ?: return null
+        return DetailFragmentArgs.fromBundle(arguments).coin
+    }
+
+
+    private fun buttonAddFavouritesClicked(button: View) {
+        viewModel.getFirebaseUser() ?: run {
             val action = DetailFragmentDirections.actionDetailFragmentToProfileFragment()
             navController().navigate(action)
+            return
+        }
+
+        getCoinFromBundle()?.let {  coin->
+            showProgress()
+            viewModel.requestSaveToFavourites(coin)
         }
     }
 
 
-    private fun bindCoin() {
-        val arguments = arguments ?: return
-        val coinId = DetailFragmentArgs.fromBundle(arguments).containerId
+    @SuppressLint("CheckResult")
+    private fun observeCoinDetail(coinDetail: CoinDetail) {
+        hideProgress()
 
-        viewModel.requestFetchCoinDetails(coinId = coinId)
+        binding.apply {
+            textViewCoinName.text = coinDetail.name
+            textViewCoinPrice.text = "${coinDetail.marketData?.currentPrice ?: "-"}"
+            Glide.with(this@DetailFragment).load(coinDetail.image?.large)
+        }
+    }
+
+
+    private fun observeCoinInFavourites(coin: Coin) {
+        showMessage("Coin added to favourites.")
     }
 
 

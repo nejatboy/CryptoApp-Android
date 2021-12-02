@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.loodos.cryptoapp.models.Coin
 
 
 abstract class BaseRecyclerViewAdapter<VDB: ViewDataBinding>(private val layoutID: Int): RecyclerView.Adapter<BaseRecyclerViewAdapter<VDB>.Holder>() {
 
     inner class Holder(cell: VDB) : BaseRecyclerViewHolder<VDB>(cell)
 
-    var itemClickListener: ((coinId: String) -> Unit)? = null
+    var itemClickListener: ((coin: Coin) -> Unit)? = null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

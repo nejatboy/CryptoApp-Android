@@ -34,9 +34,11 @@
         android:id="@+id/detailFragment"
         android:name="com.loodos.cryptoapp.ui.detail.DetailFragment"
         android:label="DetailFragment" >
-        <argument android:name="containerId" />
         <action
             android:id="@+id/action_detailFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="coin"
+            app:argType="com.loodos.cryptoapp.models.Coin" />
     </fragment>
 </navigation>
