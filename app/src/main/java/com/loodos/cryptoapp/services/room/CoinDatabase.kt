@@ -31,10 +31,5 @@ abstract class CoinDatabase : RoomDatabase() {
             CoinDatabase::class.java,
             "coin_try_database"
         ).build()
-
-
-        private fun makeDatabasse(context: Context) : CoinDatabase {
-            return Room.databaseBuilder(context.applicationContext, CoinDatabase::class.java, "coinDatabase").build()
-        }
     }
 }

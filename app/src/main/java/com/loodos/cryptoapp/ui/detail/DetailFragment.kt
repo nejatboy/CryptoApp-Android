@@ -30,6 +30,11 @@ class DetailFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentDeta
 
         activity().hideBottomNavigationView()
 
+        viewModel.fireStoreService.messageListener = ::showMessage
+
+        binding.buttonAddFavourite.visibility = View.VISIBLE
+
+        binding.buttonAddFavourite.visibility = if (isComeFromProfileFragment()) View.GONE else View.VISIBLE
         binding.buttonAddFavourite.setOnClickListener(::buttonAddFavouritesClicked)
 
         getCoinFromBundle()?.let {  coin->
@@ -45,6 +50,12 @@ class DetailFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentDeta
     private fun getCoinFromBundle() : Coin? {
         val arguments = arguments ?: return null
         return DetailFragmentArgs.fromBundle(arguments).coin
+    }
+
+
+    private fun isComeFromProfileFragment() : Boolean {
+        val arguments = arguments ?: return false
+        return DetailFragmentArgs.fromBundle(arguments).isComeFromProfile
     }
 
 
@@ -69,12 +80,13 @@ class DetailFragment: BasePrimaryFragmentHasViewModel<MainActivity, FragmentDeta
         binding.apply {
             textViewCoinName.text = coinDetail.name
             textViewCoinPrice.text = "${coinDetail.marketData?.currentPrice ?: "-"}"
-            Glide.with(this@DetailFragment).load(coinDetail.image?.large)
+            Glide.with(this@DetailFragment).load(coinDetail.image?.large).into(binding.imageViewCoin)
         }
     }
 
 
     private fun observeCoinInFavourites(coin: Coin) {
+        binding.buttonAddFavourite.visibility = View.GONE
         showMessage("Coin added to favourites.")
     }
 

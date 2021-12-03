@@ -16,7 +16,7 @@ interface CoinDao {
     suspend fun fetchAllCoins() : List<Coin>
 
 
-    @Query("SELECT * FROM coin WHERE name LIKE '%' || :search || '%'")
+    @Query("SELECT * FROM coin WHERE symbol LIKE '%' || :search || '%'")
     suspend fun findCoin(search: String) : List<Coin>
 
 

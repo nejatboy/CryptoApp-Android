@@ -8,13 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
 import com.loodos.cryptoapp.base.BaseActivity
-import com.loodos.cryptoapp.ui.SharedViewModel
 
 
 abstract class BaseFragment<A: BaseActivity<*>, VB: ViewBinding>: Fragment() {
 
     protected lateinit var binding: VB
-    protected val sharedViewModel: SharedViewModel by activityViewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

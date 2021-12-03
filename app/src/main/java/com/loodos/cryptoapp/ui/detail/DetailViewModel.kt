@@ -16,7 +16,7 @@ class DetailViewModel(application: Application) : BaseViewModel(application) {
 
     private val authService = AuthService()
     private val repository = CryptoRepository()
-    private val fireStoreService = FirestoreService()
+    val fireStoreService = FirestoreService()
 
     val coinDetail = MutableLiveData<CoinDetail>()
     val coinInFavourites = MutableLiveData<Coin>()

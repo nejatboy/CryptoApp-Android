@@ -40,5 +40,8 @@
         <argument
             android:name="coin"
             app:argType="com.loodos.cryptoapp.models.Coin" />
+        <argument
+            android:name="isComeFromProfile"
+            app:argType="boolean" />
     </fragment>
 </navigation>
